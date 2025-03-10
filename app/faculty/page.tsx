@@ -106,12 +106,24 @@ export default function FacultyPage() {
               <Card className="overflow-hidden h-full hover-scale bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-md rounded-2xl">
                 <CardContent className="p-0">
                   <div className="relative w-full pt-[100%]">
-                    <Image
-                      src={professor.image || "/placeholder.svg"}
-                      alt={professor.name}
-                      fill
-                      className="object-cover"
-                    />
+
+  {/* الصورة مع Blur خفيف */}
+  <Image
+    src={professor.image || "/placeholder.svg"}
+    alt={professor.name}
+    layout="fill"
+    objectFit="cover"
+    className="blur-sm hover:blur-0 transition duration-500"
+  />
+
+  {/* Overlay داكن شفاف */}
+  <div className="absolute inset-0 bg-black/30 transition-opacity hover:bg-black/10" />
+
+  {/* Pattern خفيف لتحسين المظهر */}
+  <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10 mix-blend-overlay" />
+
+
+
                   </div>
                   <div className="p-4">
                     <h3 className="text-base font-bold mb-1 line-clamp-1">{professor.name}</h3>
