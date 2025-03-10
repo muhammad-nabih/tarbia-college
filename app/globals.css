@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -23,7 +23,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   .dark {
@@ -61,5 +61,35 @@
 
 .font-cairo {
   font-family: var(--font-cairo);
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-glass-gradient backdrop-blur-md border border-white/20 shadow-glass;
+  }
+
+  .dark .glass-card {
+    @apply bg-glass-gradient-dark border-white/10;
+  }
+
+  .neu-card {
+    @apply bg-white shadow-neu rounded-xl;
+  }
+
+  .dark .neu-card {
+    @apply bg-gray-900 shadow-neu-dark;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .fade-in {
+    @apply animate-fade-in;
+  }
+
+  .fade-up {
+    @apply animate-fade-up;
+  }
 }
 

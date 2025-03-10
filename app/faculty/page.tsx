@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Search, Mail, Phone, GraduationCap } from "lucide-react"
+import { Search, Mail, Phone, GraduationCap, ExternalLink } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -16,18 +16,27 @@ import {
   DialogClose,
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { facultyMembers } from "@/lib/data"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import professorsData from "@/lib/professors-data.json"
 
 export default function FacultyPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedDepartment, setSelectedDepartment] = useState("all")
-  const [selectedMember, setSelectedMember] = useState<any>(null)
+  const [selectedProfessor, setSelectedProfessor] = useState<any>(null)
+  const [professors, setProfessors] = useState<any[]>([])
 
-  const filteredMembers = facultyMembers.filter((member) => {
+  useEffect(() => {
+    // Load professors from JSON
+    setProfessors(professorsData.professors)
+  }, [])
+
+  const filteredProfessors = professors.filter((professor) => {
     const matchesSearch =
-      member.name.includes(searchTerm) || member.title.includes(searchTerm) || member.department.includes(searchTerm)
+      professor.name.includes(searchTerm) ||
+      professor.title.includes(searchTerm) ||
+      professor.department.includes(searchTerm)
 
-    const matchesDepartment = selectedDepartment === "all" || member.department.includes(selectedDepartment)
+    const matchesDepartment = selectedDepartment === "all" || professor.department.includes(selectedDepartment)
 
     return matchesSearch && matchesDepartment
   })
@@ -35,11 +44,11 @@ export default function FacultyPage() {
   const departments = [
     { id: "all", name: "جميع الأقسام" },
     { id: "أصول التربية", name: "أصول التربية" },
-    { id: "المناهج وطرق التدريس", name: "المناهج وطرق التدريس" },
-    { id: "علم النفس التربوي", name: "علم النفس التربوي" },
+    { id: "مناهج وطرق تدريس", name: "مناهج وطرق تدريس" },
+    { id: "علم النفس", name: "علم النفس" },
     { id: "تكنولوجيا التعليم", name: "تكنولوجيا التعليم" },
-    { id: "رياض الأطفال", name: "رياض الأطفال" },
-  ]
+{id:"رياض أطفال" , name:"قسم رياض الاطفال"}
+]
 
   return (
     <div className="pt-24 pb-16">
@@ -50,19 +59,21 @@ export default function FacultyPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">أعضاء هيئة التدريس</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 dark:from-primary dark:to-blue-400">
+            أعضاء هيئة التدريس
+          </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            تعرف على أ��ضاء هيئة التدريس في كلية التربية وتخصصاتهم المختلفة
+            تعرف على أعضاء هيئة التدريس في كلية التربية وتخصصاتهم المختلفة
           </p>
         </motion.div>
 
         <div className="max-w-5xl mx-auto mb-8">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="glass-card p-4 rounded-2xl flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="ابحث عن عضو هيئة تدريس..."
-                className="pr-10"
+                className="pr-10 rounded-xl border-0 bg-white/50 dark:bg-gray-800/50 focus-visible:ring-primary"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -70,7 +81,7 @@ export default function FacultyPage() {
 
             <div className="w-full md:w-64">
               <select
-                className="w-full h-10 rounded-md border border-input bg-background px-3 py-2"
+                className="w-full h-10 rounded-xl border-0 bg-white/50 dark:bg-gray-800/50 px-3 py-2 focus:ring-2 focus:ring-primary"
                 value={selectedDepartment}
                 onChange={(e) => setSelectedDepartment(e.target.value)}
               >
@@ -84,25 +95,34 @@ export default function FacultyPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {filteredMembers.map((member, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {filteredProfessors.map((professor, index) => (
             <motion.div
-              key={member.id}
+              key={professor.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
             >
-              <Card className="overflow-hidden h-full">
+              <Card className="overflow-hidden h-full hover-scale bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-md rounded-2xl">
                 <CardContent className="p-0">
-                  <div className="aspect-square relative">
-                    <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+                  <div className="relative w-full pt-[100%]">
+                    <Image
+                      src={professor.image || "/placeholder.svg"}
+                      alt={professor.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                   <div className="p-4">
-                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                    <p className="text-primary text-sm mb-2">{member.title}</p>
-                    <p className="text-muted-foreground text-sm mb-4">{member.department}</p>
+                    <h3 className="text-base font-bold mb-1 line-clamp-1">{professor.name}</h3>
+                    <p className="text-primary text-xs mb-1">{professor.title}</p>
+                    <p className="text-muted-foreground text-xs mb-3">{professor.department}</p>
 
-                    <Button onClick={() => setSelectedMember(member)} className="w-full">
+                    <Button
+                      onClick={() => setSelectedProfessor(professor)}
+                      className="w-full rounded-xl text-xs py-1 h-8"
+                      variant="default"
+                    >
                       عرض الملف الشخصي
                     </Button>
                   </div>
@@ -112,8 +132,8 @@ export default function FacultyPage() {
           ))}
         </div>
 
-        {filteredMembers.length === 0 && (
-          <div className="text-center py-12">
+        {filteredProfessors.length === 0 && (
+          <div className="text-center py-12 glass-card rounded-2xl max-w-md mx-auto mt-8">
             <GraduationCap className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-xl font-bold mb-2">لا توجد نتائج</h3>
             <p className="text-muted-foreground">لم يتم العثور على أعضاء هيئة تدريس مطابقين لمعايير البحث</p>
@@ -122,87 +142,111 @@ export default function FacultyPage() {
       </div>
 
       {/* Faculty Member Details Dialog */}
-      <Dialog open={!!selectedMember} onOpenChange={(open) => !open && setSelectedMember(null)}>
-        <DialogContent className="max-w-3xl">
+      <Dialog open={!!selectedProfessor} onOpenChange={(open) => !open && setSelectedProfessor(null)}>
+        <DialogContent className="max-w-3xl rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl">{selectedMember?.name}</DialogTitle>
+            <DialogTitle className="text-2xl">{selectedProfessor?.name}</DialogTitle>
             <DialogDescription className="text-base">
-              {selectedMember?.title} - {selectedMember?.department}
+              {selectedProfessor?.title} - {selectedProfessor?.department}
             </DialogDescription>
           </DialogHeader>
 
-          <div className="mt-4">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="md:w-1/3">
-                <div className="rounded-lg overflow-hidden">
-                  <Image
-                    src={selectedMember?.image || "/placeholder.svg?height=200&width=200"}
-                    alt={selectedMember?.name || "عضو هيئة تدريس"}
-                    width={300}
-                    height={300}
-                    className="w-full h-auto object-cover"
-                  />
+          <ScrollArea className="max-h-[70vh]">
+            <div className="p-4">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="md:w-1/3">
+                  <div className="rounded-xl overflow-hidden shadow-md">
+                    <Image
+                      src={selectedProfessor?.image || "/placeholder.svg?height=200&width=200"}
+                      alt={selectedProfessor?.name || "عضو هيئة تدريس"}
+                      width={300}
+                      height={300}
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+
+                  <div className="mt-4 space-y-3 glass-card p-4 rounded-xl">
+                    <div className="flex items-center gap-2">
+                      <Mail className="h-4 w-4 text-primary" />
+                      <span className="text-sm">{selectedProfessor?.email}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-primary" />
+                      <span className="text-sm">{selectedProfessor?.phone}</span>
+                    </div>
+                    {selectedProfessor?.profile && (
+                      <div className="flex items-center gap-2">
+                        <ExternalLink className="h-4 w-4 text-primary" />
+                        <a
+                          href={selectedProfessor.profile}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline"
+                        >
+                          الصفحة الشخصية
+                        </a>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">{selectedMember?.email}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">{selectedMember?.phone}</span>
-                  </div>
+                <div className="md:w-2/3">
+                  <Tabs defaultValue="bio" className="w-full">
+                    <TabsList className="w-full rounded-xl bg-secondary/50 p-1">
+                      <TabsTrigger
+                        value="bio"
+                        className="rounded-lg flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800"
+                      >
+                        السيرة الذاتية
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="publications"
+                        className="rounded-lg flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800"
+                      >
+                        المنشورات
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="courses"
+                        className="rounded-lg flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800"
+                      >
+                        المقررات
+                      </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="bio" className="mt-4 glass-card p-4 rounded-xl">
+                      <p>{selectedProfessor?.bio}</p>
+                    </TabsContent>
+
+                    <TabsContent value="publications" className="mt-4 glass-card p-4 rounded-xl">
+                      <ul className="space-y-2">
+                        {selectedProfessor?.publications.map((pub: string, index: number) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
+                            <span>{pub}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </TabsContent>
+
+                    <TabsContent value="courses" className="mt-4 glass-card p-4 rounded-xl">
+                      <ul className="space-y-2">
+                        {selectedProfessor?.courses.map((course: string, index: number) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
+                            <span>{course}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </TabsContent>
+                  </Tabs>
                 </div>
-              </div>
-
-              <div className="md:w-2/3">
-                <Tabs defaultValue="bio">
-                  <TabsList className="w-full">
-                    <TabsTrigger value="bio" className="flex-1">
-                      السيرة الذاتية
-                    </TabsTrigger>
-                    <TabsTrigger value="publications" className="flex-1">
-                      المنشورات
-                    </TabsTrigger>
-                    <TabsTrigger value="courses" className="flex-1">
-                      المقررات
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="bio" className="mt-4">
-                    <p>{selectedMember?.bio}</p>
-                  </TabsContent>
-
-                  <TabsContent value="publications" className="mt-4">
-                    <ul className="space-y-2">
-                      {selectedMember?.publications.map((pub: string) => (
-                        <li key={pub} className="flex items-start gap-2">
-                          <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
-                          <span>{pub}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </TabsContent>
-
-                  <TabsContent value="courses" className="mt-4">
-                    <ul className="space-y-2">
-                      {selectedMember?.courses.map((course: string) => (
-                        <li key={course} className="flex items-start gap-2">
-                          <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
-                          <span>{course}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </TabsContent>
-                </Tabs>
               </div>
             </div>
-          </div>
+          </ScrollArea>
 
           <div className="flex justify-end mt-6">
             <DialogClose asChild>
-              <Button>إغلاق</Button>
+              <Button className="rounded-xl">إغلاق</Button>
             </DialogClose>
           </div>
         </DialogContent>
@@ -210,4 +254,3 @@ export default function FacultyPage() {
     </div>
   )
 }
-
