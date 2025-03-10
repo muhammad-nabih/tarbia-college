@@ -1,101 +1,172 @@
-import Image from "next/image";
+"use client"
+
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { motion } from "framer-motion"
+import { Play, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
+import VideoPlayer from "@/components/video-player"
+import { departments } from "@/lib/data"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [videoOpen, setVideoOpen] = useState(false)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section with Video */}
+      <section className="pt-24 pb-12 md:pt-32 md:pb-16">
+        <div className="container px-4 mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center text-center max-w-4xl mx-auto"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">مرحباً بك في كلية التربية</h1>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
+              تعرف على واحدة من أعرق كليات التربية في المنطقة، حيث نقدم تعليماً متميزاً ونخرج أجيالاً من المعلمين المؤهلين
+            </p>
+
+            <div className="relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-xl mb-8">
+              <Image
+                src="/placeholder.svg?height=720&width=1280"
+                alt="كلية التربية"
+                width={1280}
+                height={720}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <Button
+                  size="lg"
+                  className="rounded-full w-16 h-16 flex items-center justify-center"
+                  onClick={() => setVideoOpen(true)}
+                >
+                  <Play className="h-8 w-8" />
+                </Button>
+              </div>
+            </div>
+
+            <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+              <DialogContent className="max-w-4xl p-1 sm:p-2">
+                <VideoPlayer url="/placeholder-video.mp4" />
+              </DialogContent>
+            </Dialog>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+              <Button size="lg" asChild>
+                <Link href="/departments">تعرف على الأقسام الأكاديمية</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/buildings">استكشف مباني الكلية</Link>
+              </Button>
+            </div>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Departments Preview */}
+      <section className="py-12 md:py-16 bg-secondary/50">
+        <div className="container px-4 mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">أقسام الكلية</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              تضم كلية التربية مجموعة متنوعة من الأقسام الأكاديمية التي تغطي مختلف مجالات التربية والتعليم
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {departments.slice(0, 4).map((dept, index) => (
+              <motion.div
+                key={dept.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link href={`/departments/${dept.id}`}>
+                  <div
+                    className={`${dept.color} rounded-xl p-8 text-center h-full transition-all shadow-sm hover:shadow-md`}
+                  >
+                    <h3 className="text-xl font-bold mb-2">{dept.name}</h3>
+                    <div className="flex justify-center mt-4">
+                      <ChevronRight className="h-6 w-6" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Button asChild>
+              <Link href="/departments">عرض جميع الأقسام</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Buildings Preview */}
+      <section className="py-12 md:py-16">
+        <div className="container px-4 mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">المباني الأكاديمية والورش العملية</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              تعرف على مرافق الكلية المتطورة من قاعات دراسية وورش عملية ومعامل مجهزة بأحدث التقنيات
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="rounded-xl overflow-hidden shadow-lg"
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src="/placeholder.svg?height=720&width=1280"
+                  alt="المباني الأكاديمية"
+                  width={640}
+                  height={360}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4 bg-white">
+                <h3 className="text-xl font-bold mb-2">المباني الأكاديمية</h3>
+                <p className="text-muted-foreground mb-4">قاعات دراسية مجهزة بأحدث التقنيات التعليمية</p>
+                <Button asChild>
+                  <Link href="/buildings/academic">رؤية المزيد</Link>
+                </Button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="rounded-xl overflow-hidden shadow-lg"
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src="/placeholder.svg?height=720&width=1280"
+                  alt="الورش العملية"
+                  width={640}
+                  height={360}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4 bg-white">
+                <h3 className="text-xl font-bold mb-2">الورش العملية</h3>
+                <p className="text-muted-foreground mb-4">ورش عملية متخصصة لتطبيق المهارات العملية</p>
+                <Button asChild>
+                  <Link href="/buildings/workshops">رؤية المزيد</Link>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
