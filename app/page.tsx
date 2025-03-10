@@ -85,7 +85,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  mx-auto">
             {departments.slice(0, 4).map((dept, index) => (
               <motion.div
                 key={dept.id}
@@ -96,7 +96,7 @@ export default function Home() {
 
                 <Link href={`/departments/${dept.id}`}>
                   <Card
-                    className={` ${dept.color} rounded-2xl p-8 text-center h-full transition-all shadow-sm hover:shadow-md hover-scale`}
+                    className={` ${dept.color} rounded-2xl p-4 text-center h-full transition-all shadow-sm hover:shadow-md hover-scale flex flex-col justify-between`}
                   >
                     <h3 className="text-xl font-bold mb-2 text-white">{dept.name}</h3>
 

@@ -61,7 +61,7 @@ export default function DepartmentsPage() {
                     <h2 className="text-xl font-bold">{dept.name}</h2>
                   </div>
                   <p className="text-popover-foreground mb-4">{dept.description}</p>
-                  <Button variant="default" className="w-full rounded-xl" asChild>
+                  <Button variant="secondary" className="w-full rounded-xl" asChild>
                     <Link href={`/departments/${dept.id}`}>عرض التفاصيل</Link>
                   </Button>
                 </motion.div>

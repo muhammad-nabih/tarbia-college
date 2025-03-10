@@ -215,7 +215,7 @@ function BuildingCard({ building, index, onSelect, onViewPanorama }: BuildingCar
       </div>
       <div className="p-4">
         <h3 className="text-xl font-bold mb-2">{building.name}</h3>
-        <p className="text-muted-foreground mb-4 line-clamp-2">{building.description}</p>
+        <p className="text-muted-foreground mb-4 line-clamp-2 min-h-[60px] ">{building.description}</p>
         <Button onClick={onSelect} className="w-full rounded-xl">
           عرض التفاصيل
         </Button>
