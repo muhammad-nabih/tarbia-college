@@ -6,7 +6,7 @@ import Image from "next/image"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { History, Users, Target, Lightbulb } from "lucide-react"
-import {collegeInfo as info} from "@/lib/data.ts"
+import {collegeInfo as info} from "@/lib/data"
 
 export default function AboutPage() {
   const [collegeInfo, setCollegeInfo] = useState<any>(info)
