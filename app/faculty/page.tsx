@@ -157,8 +157,8 @@ export default function FacultyPage() {
       <Dialog open={!!selectedProfessor} onOpenChange={(open) => !open && setSelectedProfessor(null)}>
         <DialogContent className="max-w-3xl rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl">{selectedProfessor?.name}</DialogTitle>
-            <DialogDescription className="text-base">
+            <DialogTitle className="text-2xl " dir="rtl">{selectedProfessor?.name}</DialogTitle>
+            <DialogDescription className="text-base " dir="rtl">
               {selectedProfessor?.title} - {selectedProfessor?.department}
             </DialogDescription>
           </DialogHeader>
@@ -211,10 +211,10 @@ export default function FacultyPage() {
                       >
                         السيرة الذاتية
                       </TabsTrigger>
-         
+
                     </TabsList>
 
-                    <TabsContent value="bio" className="mt-4 glass-card p-4 rounded-xl">
+                    <TabsContent value="bio" className="mt-4 glass-card p-4 rounded-xl" dir="rtl">
                       <p>{selectedProfessor?.bio}</p>
                     </TabsContent>
 
@@ -229,7 +229,7 @@ export default function FacultyPage() {
                       </ul>
                     </TabsContent>
 
-                    <TabsContent value="courses" className="mt-4 glass-card p-4 rounded-xl">
+                    <TabsContent value="courses" className="mt-4 glass-card p-4 rounded-xl ">
                       <ul className="space-y-2">
                         {selectedProfessor?.courses.map((course: string, index: number) => (
                           <li key={index} className="flex items-start gap-2">
