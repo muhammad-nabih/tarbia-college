@@ -31,16 +31,18 @@ export default function CoursesPage() {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
 
   const levels = [
-    { id: "level1", name: "المستوى الأول" },
-    { id: "level2", name: "المستوى الثاني" },
-    { id: "level3", name: "المستوى الثالث" },
-    { id: "level4", name: "المستوى الرابع" },
+      { id: "level4", name: "المستوى الرابع" },
+      { id: "level3", name: "المستوى الثالث" },
+      { id: "level2", name: "المستوى الثاني" },
+      { id: "level1", name: "المستوى الأول" },
   ]
 
   const semesters = [
-    { id: "semester1", name: "الفصل الدراسي الأول" },
-    { id: "semester2", name: "الفصل الدراسي الثاني" },
+      { id: "semester2", name: "الفصل الدراسي الثاني" },
+      { id: "semester1", name: "الفصل الدراسي الأول" },
   ]
+
+
 
   // Get courses for the active level and semester with proper type checking
   const currentCourses = typedCoursesData[activeLevel]?.[activeSemester] || []
@@ -135,4 +137,3 @@ export default function CoursesPage() {
     </div>
   )
 }
-

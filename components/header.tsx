@@ -15,7 +15,7 @@ const navItems = [
   { name: "الأقسام الأكاديمية", href: "/departments" },
   { name: "المباني والورش", href: "/buildings" },
   { name: "أعضاء هيئة التدريس", href: "/faculty" },
-  { name: "التوصيفات", href: "/courses" },
+  { name: "مقررات قسم تكنولوجيات التعليم", href: "/courses" },
   { name: "عن الكلية", href: "/about" },
 ]
 
@@ -71,7 +71,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "px-3 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                  "px-3 py-2 rounded-full text-xs font-medium transition-all duration-300",
                   pathname === item.href
                     ? "bg-primary text-primary-foreground"
                     : "text-foreground hover:bg-secondary/80",

@@ -9,10 +9,10 @@ import professorsData from "@/lib/professors-data.json"
 
 // Map department IDs to icons
 const departmentIcons: Record<string, any> = {
+    technology: Laptop,
   osool: School,
   manahej: BookOpen,
   psychology: Brain,
-  technology: Laptop,
   kindergarten: Baby,
 }
 

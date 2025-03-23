@@ -223,7 +223,7 @@ export default function DepartmentPage() {
                   <div className="mt-4 space-y-3 glass-card p-4 rounded-xl">
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-primary" />
-                      <span className="text-sm">{selectedProfessor?.email}</span>
+                      <span className="text-xs">{selectedProfessor?.email}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="h-4 w-4 text-primary" />
@@ -254,18 +254,7 @@ export default function DepartmentPage() {
                       >
                         السيرة الذاتية
                       </TabsTrigger>
-                      <TabsTrigger
-                        value="publications"
-                        className="rounded-lg flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800"
-                      >
-                        المنشورات
-                      </TabsTrigger>
-                      <TabsTrigger
-                        value="courses"
-                        className="rounded-lg flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800"
-                      >
-                        المقررات
-                      </TabsTrigger>
+   
                     </TabsList>
 
                     <TabsContent value="bio" className="mt-4 glass-card p-4 rounded-xl">

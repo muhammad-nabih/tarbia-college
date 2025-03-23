@@ -173,7 +173,8 @@ export default function Home() {
         <Dialog open={!!selectedProfessor} onOpenChange={(open) => !open && setSelectedProfessor(null)}>
           <DialogContent className="max-w-4xl rounded-2xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border border-white/20 p-0 overflow-hidden">
             <div className="relative h-48 md:h-64 w-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-600 opacity-90" />
+                <Image   src={'/tarbia.jpg' } alt="كلية التربية" width={1280} height={720} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#101074ac] to-#0000ff2e opacity-90" />
               <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10 mix-blend-overlay" />
               <DialogClose className="absolute top-4 left-4 bg-black/20 hover:bg-black/40 rounded-full p-2 text-white transition-colors">
                 <X className="h-5 w-5" />
@@ -297,7 +298,7 @@ export default function Home() {
               مرحباً بك في كلية التربية
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-              تعرف على واحدة من أعرق كليات التربية في المنطقة، حيث نقدم تعليماً متميزاً ونخرج أجيالاً من المعلمين المؤهلين
+              تعرف على واحدة من أعرق كليات التربية في المنطقة، حيث نقدم تعليماً  متميز اً ونخرج أجيالاً من المعلمين المؤهلين
             </p>
             <div className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-xl mb-8 glass-card p-1">
               <Image
