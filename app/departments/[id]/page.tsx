@@ -45,6 +45,9 @@ export default function DepartmentPage() {
 
       // Get professors for this department
       const deptProfessors = professorsData.professors.filter((p) => dept.professors.includes(p.id))
+      console.log(professorsData)
+      console.log(deptProfessors)
+      console.log(dept.professors)
       setProfessors(deptProfessors)
     }
     setLoading(false)

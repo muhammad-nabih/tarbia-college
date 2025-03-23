@@ -107,20 +107,20 @@ export default function FacultyPage() {
                 <CardContent className="p-0">
                   <div className="relative w-full pt-[100%]">
 
-  {/* الصورة مع Blur خفيف */}
+
   <Image
     src={professor.image || "/placeholder.svg"}
     alt={professor.name}
     layout="fill"
     objectFit="cover"
-    className="blur-sm hover:blur-0 transition duration-500"
+    className=" hover:blur-0 transition duration-500"
   />
 
   {/* Overlay داكن شفاف */}
-  <div className="absolute inset-0 bg-black/30 transition-opacity hover:bg-black/10" />
+  {/* <div className="absolute inset-0 bg-black/30 transition-opacity hover:bg-black/10" /> */}
 
   {/* Pattern خفيف لتحسين المظهر */}
-  <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10 mix-blend-overlay" />
+  {/* <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10 mix-blend-overlay" /> */}
 
 
 

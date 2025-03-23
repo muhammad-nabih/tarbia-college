@@ -8,7 +8,7 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,json}", // إضافة هذا السطر لتضمين ملفات JSON
+    "./lib/**/*.{js,ts,json}",
   ],
   prefix: "",
   theme: {
@@ -57,7 +57,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // إضافة ألوان إضافية
+     
         blue: {
           50: "#eff6ff",
           100: "#dbeafe",
