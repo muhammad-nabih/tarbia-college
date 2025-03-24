@@ -58,6 +58,7 @@ export default function CoursesPage() {
       "graduation-project-extended": "/مشروع-التخرج.jpg",
       "action-research-extended": "/بحوث-الفعل.jpg",
       "cybersecurity-in-education": "/الامن-السيبراني.jpg",
+
       "field-training-4": "/تدريب-ميداني.jpg",
       "field-training-5": "/تدريب-ميداني.jpg",
       "digital-empowerment": "/مصادر-ثلاثيه-الابعاد.jpg",
@@ -70,7 +71,7 @@ export default function CoursesPage() {
       "educational-game-motivators": "/محفزات-الالعاب.jpg",
       "theoretical-foundations-for-special-groups": "/الاسس-النظرية-لتعليم-ذوي-الفئات-الخاصة.jpg",
       "digital-learning-resource-centers": "/مركز-مصادر-التعلم-الرقمي.jpg",
-      photography: "/التصوير-الفوتوغرافي.jpg",
+      "photography": "/التصوير-الفوتوغرافي.jpg",
       "introduction-to-instructional-design": "/مدخل-الي-التصميم-التعليمي.jpg",
       "theoretical-foundations-of-integrated-media": "/الاسس-النظرية-للوسائط-المتكاملة.jpg",
       "radio-and-audio-recordings": "/الاذاعة-والتسجيلات-الصوتية.jpg",
@@ -164,7 +165,7 @@ export default function CoursesPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-2 right-2 left-2">
-                      <h3 className="font-bold text-sm md:text-base text-white line-clamp-2">{course.title}</h3>
+                      <h3 className="font-bold text-sm md:text-base text-white line-clamp-2" dir='rtl'>{course.title}</h3>
                     </div>
                   </div>
                 </motion.div>
@@ -188,7 +189,7 @@ export default function CoursesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute bottom-4 right-4 left-4">
-                  <h2 className="text-2xl font-bold text-white">{selectedCourse.title}</h2>
+                  <h2 className="text-2xl font-bold text-white " dir="rtl">{selectedCourse.title}</h2>
                 </div>
                 <DialogClose className="absolute top-4 left-4 bg-black/20 hover:bg-black/40 rounded-full p-2 text-white">
                   <svg
@@ -245,4 +246,3 @@ export default function CoursesPage() {
     </div>
   )
 }
-

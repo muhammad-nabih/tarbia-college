@@ -83,7 +83,7 @@ console.log(departmentId)
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-12 "
         >
           <h1 className="text-3xl md:text-5xl font-bold mb-4 py-3 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 dark:from-primary dark:to-blue-400">
             {department.name}
@@ -97,7 +97,7 @@ console.log(departmentId)
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className={`${department.color.bg} rounded-2xl p-6 shadow-md`}
+              className={`${department.color.bg} rounded-2xl p-6 shadow-md min-h-[300px]`}
             >
               <div className="flex flex-col items-center text-center">
                 <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-full mb-4 shadow-sm">
@@ -112,7 +112,7 @@ console.log(departmentId)
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className={`${department.color.bg} rounded-2xl p-6 shadow-md`}
+              className={`${department.color.bg} rounded-2xl p-6 shadow-md min-h-[300px]`}
             >
               <div className="flex flex-col items-center text-center">
                 <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-full mb-4 shadow-sm">
@@ -127,7 +127,7 @@ console.log(departmentId)
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className={`${department.color.bg} rounded-2xl p-6 shadow-md`}
+              className={`${department.color.bg} rounded-2xl p-6 shadow-md min-h-[300px]`}
             >
               <div className="flex flex-col items-center text-center">
                 <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-full mb-4 shadow-sm">
@@ -143,7 +143,7 @@ console.log(departmentId)
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="glass-card rounded-2xl p-6 shadow-md"
+              className="glass-card rounded-2xl p-6 shadow-md min-h-[300px]"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="w-24 h-24 rounded-full overflow-hidden mb-4 shadow-md">
