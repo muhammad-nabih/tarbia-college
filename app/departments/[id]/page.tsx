@@ -18,6 +18,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog"
 import professorsData from "@/lib/professors-data.json"
+import Link from "next/link"
 
 // Map department IDs to icons
 const departmentIcons: Record<string, any> = {
@@ -31,7 +32,7 @@ const departmentIcons: Record<string, any> = {
 export default function DepartmentPage() {
   const params = useParams()
   const departmentId = params.id as string
-
+console.log(departmentId)
   const [department, setDepartment] = useState<any>(null)
   const [professors, setProfessors] = useState<any[]>([])
   const [selectedProfessor, setSelectedProfessor] = useState<any>(null)
@@ -91,7 +92,7 @@ export default function DepartmentPage() {
         </motion.div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -121,6 +122,22 @@ export default function DepartmentPage() {
                 <p className="text-popover">{department.mission}</p>
               </div>
             </motion.div>
+            {departmentId==="technology" &&<Link href="/courses">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className={`${department.color.bg} rounded-2xl p-6 shadow-md`}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-full mb-4 shadow-sm">
+                  <Icon className="h-12 w-12 text-primary" />
+                </div>
+                <h2 className="text-xl font-bold mb-2"> مقررات القسم</h2>
+                <p className="text-popover">جميع مقررات قسم تكنولوجيا التعليم </p>
+              </div>
+            </motion.div></Link>}
+
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -254,7 +271,7 @@ export default function DepartmentPage() {
                       >
                         السيرة الذاتية
                       </TabsTrigger>
-   
+
                     </TabsList>
 
                     <TabsContent value="bio" className="mt-4 glass-card p-4 rounded-xl">

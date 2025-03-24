@@ -69,7 +69,7 @@
         {
             "id": 37,
             "name": "طاهر عبدالله أحمد فرحات",
-            "title": "أستاذ",
+            "title": " أستاذ متفرغ",
             "department": "تكنولوجيا التعليم",
             "image": "/طاهر.jpg",
             "profile": "https://du.edu.eg/user.aspx?u=387",
@@ -135,7 +135,7 @@
         {
             "id": 43,
             "name": "زكريا عبد المسيح كامل سوريال",
-            "title": "مدرس",
+            "title": "استاذ مساعد",
             "department": "تكنولوجيا التعليم",
             "image": "/زكريا.jpg",
             "profile": "https://du.edu.eg/user.aspx?u=311",
@@ -213,7 +213,7 @@
         {
             "id": 48,
             "name": "بشرى مجدى جمال السعيد سليم",
-            "title": "مدرس مساعد",
+            "title": "مدرس ",
             "department": "تكنولوجيا التعليم",
             "image": "/بشري.png",
             "profile": "https://du.edu.eg/user.aspx?u=1193",
@@ -226,7 +226,7 @@
         {
             "id": 49,
             "name": "اسراء المحمدى أحمد مرسى جاد",
-            "title": "مدرس مساعد",
+            "title": "مدرس ",
             "department": "تكنولوجيا التعليم",
             "image": "/اسراء.png",
             "profile": "https://du.edu.eg/user.aspx?u=1045",
@@ -239,7 +239,7 @@
         {
             "id": 50,
             "name": "محمد محمد ابراهيم كيوان",
-            "title": "مدرس مساعد",
+            "title": "مدرس ",
             "department": "تكنولوجيا التعليم",
             "image": "/محمد-كيوان.jpg",
             "profile": "https://du.edu.eg/user.aspx?u=1019",
@@ -252,7 +252,7 @@
         {
             "id": 51,
             "name": "روان محمد محمد غازى",
-            "title": "مدرس مساعد",
+            "title": "مدرس ",
             "department": "تكنولوجيا التعليم",
             "image": "/روان.png",
             "profile": "https://du.edu.eg/user.aspx?u=1195",
@@ -265,7 +265,7 @@
         {
             "id": 52,
             "name": "عمرو حافظ حافظ البسيوني",
-            "title": "مدرس مساعد",
+            "title": "مدرس ",
             "department": "تكنولوجيا التعليم",
             "image": "/عمرو.png",
             "profile": "https://du.edu.eg/user.aspx?u=1189",
@@ -480,7 +480,7 @@
         "name": "أ.د. محمود جابر حسن احمد",
         "title": "أستاذ",
         "department": "مناهج وطرق تدريس",
-        "image": "https://hr.mans.edu.eg/dpp/2740323/26/02316/00.jpg",
+        "image": "/محمود-جابر.jpg",
         "profile": "https://www.du.edu.eg/user.aspx?u=589",
         "email": "mahmoud.gaber@edu.du.edu.eg",
         "phone": "01234567903",

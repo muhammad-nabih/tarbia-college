@@ -15,7 +15,6 @@ const navItems = [
   { name: "الأقسام الأكاديمية", href: "/departments" },
   { name: "المباني والورش", href: "/buildings" },
   { name: "أعضاء هيئة التدريس", href: "/faculty" },
-  { name: "مقررات قسم تكنولوجيات التعليم", href: "/courses" },
   { name: "عن الكلية", href: "/about" },
 ]
 

@@ -221,7 +221,7 @@ export default function AboutPage() {
                 <CardDescription>قيادات كلية التربية الحالية</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   <div className="text-center bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-sm hover-scale">
                     <div className="mx-auto w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
                       <Image
@@ -256,7 +256,7 @@ export default function AboutPage() {
                   <div className="text-center bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-sm hover-scale">
                     <div className="mx-auto w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
                       <Image
-                        src="https://hr.mans.edu.eg/dpp/2680609/21/00611/00.jpg"
+                        src="/ربيع.jpg"
                         alt="وكيل الكلية للدراسات العليا والبحوث"
                         width={128}
                         height={128}
@@ -265,6 +265,27 @@ export default function AboutPage() {
                     </div>
                     <h3 className="font-bold text-lg">أ.د. الدكتور ربيع عبد العظيم</h3>
                     <p className="text-primary">وكيل الكلية للدراسات العليا والبحوث</p>
+                  </div>
+
+                  <div className="text-center bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-sm hover-scale">
+                    <div className="mx-auto w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
+                      <Image
+                        src="/محمود-جابر.jpg"
+                        alt="وكيل الكلية للدراسات العليا والبحوث"
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="font-bold text-lg">
+
+                        أ.د.محمود جابرالجلوي
+
+                        </h3>
+                    <p className="text-primary">
+
+                    وكيل الكلية لشئون البيئة والمجتمع
+                        </p>
                   </div>
                 </div>
               </CardContent>
