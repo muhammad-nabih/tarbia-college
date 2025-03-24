@@ -223,19 +223,7 @@ export default function Home() {
       {/* Search Section  */}
       <div className="pt-24 pb-16">
         <div className="container px-4 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12"
-          >
-            <h1 className="text-3xl md:text-5xl font-bold py-2 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 dark:from-primary dark:to-blue-400">
-              البحث الشامل
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              ابحث عن أعضاء هيئة التدريس أو المقررات الدراسية في كلية التربية
-            </p>
-          </motion.div>
+      
 
           <div className="max-w-5xl mx-auto mb-8">
             <div className="glass-card p-6 rounded-2xl flex flex-col gap-4 shadow-lg border border-white/20 backdrop-blur-md">
