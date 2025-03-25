@@ -122,7 +122,7 @@ export default function Home() {
       "educational-game-motivators": "/محفزات-الالعاب.jpg",
       "theoretical-foundations-for-special-groups": "/الاسس-النظرية-لتعليم-ذوي-الفئات-الخاصة.jpg",
       "digital-learning-resource-centers": "/مركز-مصادر-التعلم-الرقمي.jpg",
-      photography: "/التصوير-الفوتوغرافي.jpg",
+      "photography": "/التصوير-الفوتوغرافي.jpg",
       "introduction-to-instructional-design": "/مدخل-الي-التصميم-التعليمي.jpg",
       "theoretical-foundations-of-integrated-media": "/الاسس-النظرية-للوسائط-المتكاملة.jpg",
       "radio-and-audio-recordings": "/الاذاعة-والتسجيلات-الصوتية.jpg",
@@ -223,7 +223,7 @@ export default function Home() {
       {/* Search Section  */}
       <div className="pt-24 pb-16">
         <div className="container px-4 mx-auto">
-      
+
 
           <div className="max-w-5xl mx-auto mb-8">
             <div className="glass-card p-6 rounded-2xl flex flex-col gap-4 shadow-lg border border-white/20 backdrop-blur-md">
@@ -446,7 +446,7 @@ export default function Home() {
           {/* Faculty Member Details Dialog */}
           <Dialog open={!!selectedProfessor} onOpenChange={(open) => !open && setSelectedProfessor(null)}>
             <DialogContent className="max-w-4xl rounded-2xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border border-white/20 p-0 overflow-hidden">
-              <div className="relative h-32 md:h-[230px] w-full overflow-hidden">
+              <div className="relative h-32 md:h-[190px] w-full overflow-hidden">
                 <Image
                   src={"/tarbia.jpg"}
                   alt="كلية التربية"
@@ -459,7 +459,7 @@ export default function Home() {
                 <DialogClose className="absolute top-4 left-4 bg-black/20 hover:bg-black/40 rounded-full p-2 text-white transition-colors">
                   <X className="h-5 w-5" />
                 </DialogClose>
-                <div className="absolute -bottom-16 right-8 w-32 h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-900 shadow-xl">
+                <div className="absolute -bottom-16 right-8 w-24 h-24 md:w-40 md:h-44 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-900 shadow-xl">
                   <Image
                     src={selectedProfessor?.image || "/placeholder.svg?height=200&width=200"}
                     alt={selectedProfessor?.name || "عضو هيئة تدريس"}
@@ -468,7 +468,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="pt-20 px-8 pb-6">
+              <div className="pt-6 px-8 pb-6">
                 <div className="flex flex-col md:flex-row justify-between">
                   <div>
                     <h2 className="text-3xl font-bold mb-1">{selectedProfessor?.name}</h2>
@@ -490,18 +490,18 @@ export default function Home() {
                     )}
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-4 mt-6 mb-8">
+                <div className="flex flex-wrap gap-4 mt-4 mb-8">
                   <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-full">
                     <Mail className="h-4 w-4 text-primary" />
                     <span className="text-sm">{selectedProfessor?.email}</span>
                   </div>
                   <div className="flex items-center gap-2 bg-muted/50 px-3 py-1.5 rounded-full">
                     <Phone className="h-4 w-4 text-primary" />
-                    <span className="text-sm">{selectedProfessor?.phone}</span>
+                    <span className="text-sm " dir="ltr">{selectedProfessor?.phone}</span>
                   </div>
                 </div>
               </div>
-              <ScrollArea className="max-h-[25vh] px-8 pb-8">
+              <ScrollArea className="max-h-[20vh] px-8 pb-4">
                 <Tabs defaultValue="bio" className="w-full">
                   <TabsList className="w-full rounded-xl bg-secondary/50 p-1">
                     <TabsTrigger

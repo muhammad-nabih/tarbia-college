@@ -92,7 +92,7 @@ console.log(departmentId)
         </motion.div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className={`grid grid-cols-1 ${departmentId === "technology" ? "md:grid-cols-4" : "md:grid-cols-3"} gap-8 mb-12`}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
