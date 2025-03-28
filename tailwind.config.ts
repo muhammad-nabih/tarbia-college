@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
@@ -57,7 +57,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-     
+
         blue: {
           50: "#eff6ff",
           100: "#dbeafe",
@@ -177,13 +177,14 @@ const config = {
         "neu-dark": "5px 5px 10px #1a1a1a, -5px -5px 10px #2c2c2c",
       },
       backgroundImage: {
-        "glass-gradient": "linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1))",
-        "glass-gradient-dark": "linear-gradient(135deg, rgba(40, 40, 40, 0.4), rgba(20, 20, 20, 0.1))",
+        "glass-gradient":
+          "linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1))",
+        "glass-gradient-dark":
+          "linear-gradient(135deg, rgba(40, 40, 40, 0.4), rgba(20, 20, 20, 0.1))",
       },
     },
   },
   safelist: [
-
     {
       pattern: /bg-gradient-to-br/,
     },
@@ -195,6 +196,6 @@ const config = {
     },
   ],
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

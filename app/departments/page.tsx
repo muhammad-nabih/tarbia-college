@@ -1,50 +1,42 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { BookOpen, School, Laptop, Baby, Brain } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import professorsData from "@/lib/professors-data.json"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { BookOpen, School, Laptop, Baby, Brain } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import professorsData from "@/lib/professors-data.json";
+import SectionTitle from "@/components/section-title";
 
 // Map department IDs to icons
 const departmentIcons: Record<string, any> = {
-    technology: Laptop,
+  technology: Laptop,
   osool: School,
   manahej: BookOpen,
   psychology: Brain,
   kindergarten: Baby,
-}
+};
 
 export default function DepartmentsPage() {
-  const [departments, setDepartments] = useState<any[]>([])
+  const [departments, setDepartments] = useState<any[]>([]);
 
   useEffect(() => {
     // Load departments from JSON
-    setDepartments(professorsData.departments)
-  }, [])
+    setDepartments(professorsData.departments);
+  }, []);
 
   return (
     <div className="pt-24 pb-16">
       <div className="container px-4 mx-auto">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12"
-          >
-            <h1 className="text-3xl md:text-5xl py-2 font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 dark:from-primary dark:to-blue-400">
-              الأقسام الأكاديمية
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              تعرف على الأقسام الأكاديمية في كلية التربية والتخصصات المختلفة التي تقدمها
-            </p>
-          </motion.div>
+          <SectionTitle
+            title="أقسام التدريس"
+            description="تعرف على جميع أقسام التدريس في الكلية، واكتشف تخصصاتهم المختلفة ومساهماتهم الأكاديمية."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {departments.map((dept, index) => {
-              const Icon = departmentIcons[dept.id] || School
+              const Icon = departmentIcons[dept.id] || School;
 
               return (
                 <motion.div
@@ -60,16 +52,22 @@ export default function DepartmentsPage() {
                     </div>
                     <h2 className="text-xl font-bold">{dept.name}</h2>
                   </div>
-                  <p className="text-popover-foreground mb-4">{dept.description}</p>
-                  <Button variant="secondary" className="w-full rounded-xl" asChild>
+                  <p className="text-popover-foreground mb-4">
+                    {dept.description}
+                  </p>
+                  <Button
+                    variant="secondary"
+                    className="w-full rounded-xl"
+                    asChild
+                  >
                     <Link href={`/departments/${dept.id}`}>عرض التفاصيل</Link>
                   </Button>
                 </motion.div>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,38 +1,34 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import Image from "next/image"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { History, Users, Target, Lightbulb } from "lucide-react"
-import {collegeInfo as info} from "@/lib/data"
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { History, Users, Target, Lightbulb } from "lucide-react";
+import { collegeInfo as info } from "@/lib/data";
+import SectionTitle from "@/components/section-title";
 
 export default function AboutPage() {
-  const [collegeInfo, setCollegeInfo] = useState<any>(info)
-
-
+  const [collegeInfo, setCollegeInfo] = useState<any>(info);
 
   if (!collegeInfo) {
-    return <div className="pt-24 pb-16 container">جاري التحميل...</div>
+    return <div className="pt-24 pb-16 container">جاري التحميل...</div>;
   }
 
   return (
     <div className="pt-24 pb-16">
       <div className="container px-4 mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-3xl md:text-5xl py-2  font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 dark:from-primary dark:to-blue-400">
-            عن كلية التربية
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            تعرف على تاريخ وإنجازات كلية التربية ورسالتها في إعداد المعلمين المؤهلين
-          </p>
-        </motion.div>
+        <SectionTitle
+          title="معلومات عن الكلية "
+          description="تعرف على معلومات عن كلية التربية والتخصصات المختلفة التي تقدمها"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
           <motion.div
@@ -57,7 +53,9 @@ export default function AboutPage() {
             className="flex flex-col justify-center glass-card p-6 rounded-2xl"
           >
             <h2 className="text-2xl font-bold mb-4">كلمة العميد</h2>
-            <p className="mb-4 text-muted-foreground line-clamp-[12]">{collegeInfo.deanMessage}</p>
+            <p className="mb-4 text-muted-foreground line-clamp-[12]">
+              {collegeInfo.deanMessage}
+            </p>
             <div className="flex items-center gap-2 mt-4">
               <div className="w-16 h-16 rounded-full overflow-hidden mr-4 shadow-md">
                 <Image
@@ -118,12 +116,16 @@ export default function AboutPage() {
                 <div className="space-y-6">
                   <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl shadow-sm">
                     <h3 className="text-xl font-bold mb-3">الرؤية</h3>
-                    <p className="text-muted-foreground">{collegeInfo.vision}</p>
+                    <p className="text-muted-foreground">
+                      {collegeInfo.vision}
+                    </p>
                   </div>
 
                   <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-xl shadow-sm">
                     <h3 className="text-xl font-bold mb-3">الرسالة</h3>
-                    <p className="text-muted-foreground">{collegeInfo.mission}</p>
+                    <p className="text-muted-foreground">
+                      {collegeInfo.mission}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -134,20 +136,27 @@ export default function AboutPage() {
             <Card className="border-0 glass-card rounded-2xl">
               <CardHeader>
                 <CardTitle>الأهداف الإستراتيجية</CardTitle>
-                <CardDescription>الأهداف الإستراتيجية لكلية التربية</CardDescription>
+                <CardDescription>
+                  الأهداف الإستراتيجية لكلية التربية
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {collegeInfo.strategicGoals.map((goal: string, index: number) => (
-                    <div key={index} className="flex gap-4 bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-sm">
-                      <div className="bg-primary/10 text-primary rounded-full h-10 w-10 flex items-center justify-center shrink-0">
-                        {index + 1}
+                  {collegeInfo.strategicGoals.map(
+                    (goal: string, index: number) => (
+                      <div
+                        key={index}
+                        className="flex gap-4 bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-sm"
+                      >
+                        <div className="bg-primary/10 text-primary rounded-full h-10 w-10 flex items-center justify-center shrink-0">
+                          {index + 1}
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">{goal}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-muted-foreground">{goal}</p>
-                      </div>
-                    </div>
-                  ))}
+                    ),
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -157,7 +166,9 @@ export default function AboutPage() {
             <Card className="border-0 glass-card rounded-2xl">
               <CardHeader>
                 <CardTitle>تاريخ الكلية</CardTitle>
-                <CardDescription>نبذة عن تاريخ تأسيس كلية التربية ومراحل تطورها</CardDescription>
+                <CardDescription>
+                  نبذة عن تاريخ تأسيس كلية التربية ومراحل تطورها
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -168,8 +179,9 @@ export default function AboutPage() {
                     <div>
                       <h3 className="font-bold">تأسيس الكلية</h3>
                       <p className="text-muted-foreground">
-                        تأسست كلية التربية في فترة السبعينات من القرن الماضي كإحدى كليات الجامعة لتلبية احتياجات المجتمع
-                        من المعلمين المؤهلين.
+                        تأسست كلية التربية في فترة السبعينات من القرن الماضي
+                        كإحدى كليات الجامعة لتلبية احتياجات المجتمع من المعلمين
+                        المؤهلين.
                       </p>
                     </div>
                   </div>
@@ -181,7 +193,8 @@ export default function AboutPage() {
                     <div>
                       <h3 className="font-bold">افتتاح المبنى الجديد</h3>
                       <p className="text-muted-foreground">
-                        تم افتتاح المبنى الجديد للكلية المجهز بأحدث التقنيات التعليمية والمعامل المتطورة.
+                        تم افتتاح المبنى الجديد للكلية المجهز بأحدث التقنيات
+                        التعليمية والمعامل المتطورة.
                       </p>
                     </div>
                   </div>
@@ -193,7 +206,8 @@ export default function AboutPage() {
                     <div>
                       <h3 className="font-bold">إنشاء برامج الدراسات العليا</h3>
                       <p className="text-muted-foreground">
-                        تم إنشاء برامج الدراسات العليا في مختلف التخصصات التربوية لتلبية احتياجات سوق العمل.
+                        تم إنشاء برامج الدراسات العليا في مختلف التخصصات
+                        التربوية لتلبية احتياجات سوق العمل.
                       </p>
                     </div>
                   </div>
@@ -205,7 +219,8 @@ export default function AboutPage() {
                     <div>
                       <h3 className="font-bold">اعتماد الكلية</h3>
                       <p className="text-muted-foreground">
-                        حصلت الكلية على الاعتماد من الهيئة القومية لضمان جودة التعليم والاعتماد.
+                        حصلت الكلية على الاعتماد من الهيئة القومية لضمان جودة
+                        التعليم والاعتماد.
                       </p>
                     </div>
                   </div>
@@ -232,7 +247,9 @@ export default function AboutPage() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="font-bold text-lg">{collegeInfo.dean.name}</h3>
+                    <h3 className="font-bold text-lg">
+                      {collegeInfo.dean.name}
+                    </h3>
                     <p className="text-primary">عميد الكلية</p>
                   </div>
 
@@ -247,10 +264,11 @@ export default function AboutPage() {
                       />
                     </div>
                     <h3 className="font-bold text-lg">
-أ.د. محمد حسن أحمد جمعه
-
-                         </h3>
-                    <p className="text-primary">وكيل الكلية لشؤون التعليم والطلاب</p>
+                      أ.د. محمد حسن أحمد جمعه
+                    </h3>
+                    <p className="text-primary">
+                      وكيل الكلية لشؤون التعليم والطلاب
+                    </p>
                   </div>
 
                   <div className="text-center bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-sm hover-scale">
@@ -263,8 +281,12 @@ export default function AboutPage() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="font-bold text-lg">أ.د. الدكتور ربيع عبد العظيم</h3>
-                    <p className="text-primary">وكيل الكلية للدراسات العليا والبحوث</p>
+                    <h3 className="font-bold text-lg">
+                      أ.د. الدكتور ربيع عبد العظيم
+                    </h3>
+                    <p className="text-primary">
+                      وكيل الكلية للدراسات العليا والبحوث
+                    </p>
                   </div>
 
                   <div className="text-center bg-white/50 dark:bg-gray-800/50 p-4 rounded-xl shadow-sm hover-scale">
@@ -277,15 +299,10 @@ export default function AboutPage() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="font-bold text-lg">
-
-                        أ.د.محمود جابرالجلوي
-
-                        </h3>
+                    <h3 className="font-bold text-lg">أ.د.محمود جابرالجلوي</h3>
                     <p className="text-primary">
-
-                    وكيل الكلية لشئون البيئة والمجتمع
-                        </p>
+                      وكيل الكلية لشئون البيئة والمجتمع
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -294,5 +311,5 @@ export default function AboutPage() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }

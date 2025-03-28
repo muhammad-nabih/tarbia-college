@@ -1,60 +1,64 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Book, GraduationCap } from "lucide-react"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import Image from "next/image"
-import coursesData from "@/lib/courses-data.json"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Book, GraduationCap } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import Image from "next/image";
+import coursesData from "@/lib/courses-data.json";
 
 // Define types for our course data structure
 type Course = {
-  id: string
-  title: string
-  description: string
-}
+  id: string;
+  title: string;
+  description: string;
+};
 
 type CoursesData = {
   [key: string]: {
-    [key: string]: Course[]
-  }
-}
+    [key: string]: Course[];
+  };
+};
 
 // Type assertion for our data
-const typedCoursesData = coursesData as CoursesData
+const typedCoursesData = coursesData as CoursesData;
 
 export default function CoursesPage() {
-  const [activeLevel, setActiveLevel] = useState<string>("level1")
-  const [activeSemester, setActiveSemester] = useState<string>("semester1")
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
+  const [activeLevel, setActiveLevel] = useState<string>("level1");
+  const [activeSemester, setActiveSemester] = useState<string>("semester1");
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
   const levels = [
     { id: "level4", name: "المستوى الرابع" },
     { id: "level3", name: "المستوى الثالث" },
     { id: "level2", name: "المستوى الثاني" },
     { id: "level1", name: "المستوى الأول" },
-  ]
+  ];
 
   const semesters = [
     { id: "semester2", name: "الفصل الدراسي الثاني" },
     { id: "semester1", name: "الفصل الدراسي الأول" },
-  ]
+  ];
 
   // Function to get course image path
   const getCourseImage = (courseId: string): string => {
     const imageMap: Record<string, string> = {
-      "educational-tv-programs-design-and-production": "/تصميم-وانتاج-برامج-التليفزيون.jpg",
+      "educational-tv-programs-design-and-production":
+        "/تصميم-وانتاج-برامج-التليفزيون.jpg",
       "augmented-reality-technology": "/تكنولوجيا-الواقع-المعزز.jpg",
-      "educational-games-design-and-production": "/تصميم-وانتاج-الالعاب-التعليمية.jpg",
-      "educational-websites-design-and-production": "/تصميم-وانتاج-المواقع-التعليمية.jpg",
+      "educational-games-design-and-production":
+        "/تصميم-وانتاج-الالعاب-التعليمية.jpg",
+      "educational-websites-design-and-production":
+        "/تصميم-وانتاج-المواقع-التعليمية.jpg",
       "e-book-design": "/تصميم-كتاب-الكتروني.jpg",
       "simulation-methods-and-design": "/اساليب-المحاكاه.jpg",
       "digital-images-production-and-processing": "/الصور-الرقمية.jpg",
       "adaptive-learning-environments": "/بيئات-التعليم-التكيفيه.jpg",
-      "digital-applications-in-education": "/توظيف-التطبيقات-الرقمية-في-التعليم.jpg",
+      "digital-applications-in-education":
+        "/توظيف-التطبيقات-الرقمية-في-التعليم.jpg",
       "graduation-project-extended": "/مشروع-التخرج.jpg",
       "action-research-extended": "/بحوث-الفعل.jpg",
       "cybersecurity-in-education": "/الامن-السيبراني.jpg",
@@ -69,35 +73,41 @@ export default function CoursesPage() {
       "educational-robotics": "/الروبوتات.jpg",
       "digital-content-management-systems": "/نظم-ادارة-المحتوي-الرقمي.jpg",
       "educational-game-motivators": "/محفزات-الالعاب.jpg",
-      "theoretical-foundations-for-special-groups": "/الاسس-النظرية-لتعليم-ذوي-الفئات-الخاصة.jpg",
+      "theoretical-foundations-for-special-groups":
+        "/الاسس-النظرية-لتعليم-ذوي-الفئات-الخاصة.jpg",
       "digital-learning-resource-centers": "/مركز-مصادر-التعلم-الرقمي.jpg",
-      "photography": "/التصوير-الفوتوغرافي.jpg",
+      photography: "/التصوير-الفوتوغرافي.jpg",
       "introduction-to-instructional-design": "/مدخل-الي-التصميم-التعليمي.jpg",
-      "theoretical-foundations-of-integrated-media": "/الاسس-النظرية-للوسائط-المتكاملة.jpg",
+      "theoretical-foundations-of-integrated-media":
+        "/الاسس-النظرية-للوسائط-المتكاملة.jpg",
       "radio-and-audio-recordings": "/الاذاعة-والتسجيلات-الصوتية.jpg",
       "e-learning": "/التعليم-الالكتروني.jpg",
       "digital-educational-communication": "/الاتصال-التعليمي-الرقمي.jpg",
       "educational-computer-networks": "/شبكات-الكمبيوتر-التعليمية.jpg",
       "e-learning-environments": "/بيئات-التعلم-الالكتروني.jpg",
-      "static-and-animated-educational-graphics": "/الرسوم-التعليمية-المتحركة-والثابته.jpg",
+      "static-and-animated-educational-graphics":
+        "/الرسوم-التعليمية-المتحركة-والثابته.jpg",
       "readings-in-english": "/قراءات-في-التخصص-باللغه-الانحليزية.jpg",
-      "multimedia-environments-for-special-groups": "/تصميم-وانتاج-بيئات-الوسائط-المتكاملة-للفئات-الخاصه.jpg",
+      "multimedia-environments-for-special-groups":
+        "/تصميم-وانتاج-بيئات-الوسائط-المتكاملة-للفئات-الخاصه.jpg",
       "accelerated-learning-and-smart-surfaces": "/التعليم-المعجل.jpg",
       "user-interfaces-in-virtual-learning-environments": "/وجهات-المستخدم.jpg",
       "interactive-video-environments": "/بيئات-الفيديو-التفاعلي.jpg",
       "educational-virtual-museums": "/المتاحف-الافتراضية.jpg",
       "educational-websites-production": "/انتاج-المواقع-التعليمية.jpg",
-      "digital-learning-environments-and-tools": "/بيئات-التعلم-الرقمي-وادواتها.jpg",
+      "digital-learning-environments-and-tools":
+        "/بيئات-التعلم-الرقمي-وادواتها.jpg",
       "interactive-virtual-technology": "/التكنولوجيا-الافتراضية-التفاعلية.jpg",
-      "learning-resources-for-special-groups": "/مصادر-التعلم-للفئات-الخاصة.png",
-    }
+      "learning-resources-for-special-groups":
+        "/مصادر-التعلم-للفئات-الخاصة.png",
+    };
 
     // Return the mapped image or a default image if not found
-    return imageMap[courseId] || "/placeholder.svg?height=200&width=200"
-  }
+    return imageMap[courseId] || "/placeholder.svg?height=200&width=200";
+  };
 
   // Get courses for the active level and semester with proper type checking
-  const currentCourses = typedCoursesData[activeLevel]?.[activeSemester] || []
+  const currentCourses = typedCoursesData[activeLevel]?.[activeSemester] || [];
 
   return (
     <div className="pt-24 pb-16">
@@ -112,13 +122,18 @@ export default function CoursesPage() {
             توصيف المقررات الدراسية
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            تعرف على المقررات الدراسية المتاحة في البرنامج ومحتوياتها وأهدافها التعليمية
+            تعرف على المقررات الدراسية المتاحة في البرنامج ومحتوياتها وأهدافها
+            التعليمية
           </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
           {/* Level Tabs */}
-          <Tabs value={activeLevel} onValueChange={setActiveLevel} className="mb-8">
+          <Tabs
+            value={activeLevel}
+            onValueChange={setActiveLevel}
+            className="mb-8"
+          >
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8 rounded-xl bg-secondary/50 p-1">
               {levels.map((level) => (
                 <TabsTrigger
@@ -133,10 +148,18 @@ export default function CoursesPage() {
             </TabsList>
 
             {/* Semester Tabs - Now as a separate Tabs component */}
-            <Tabs value={activeSemester} onValueChange={setActiveSemester} className="mb-8">
+            <Tabs
+              value={activeSemester}
+              onValueChange={setActiveSemester}
+              className="mb-8"
+            >
               <TabsList className="grid w-full grid-cols-2 rounded-xl bg-secondary/50 p-1">
                 {semesters.map((semester) => (
-                  <TabsTrigger key={semester.id} value={semester.id} className="rounded-lg flex items-center gap-2">
+                  <TabsTrigger
+                    key={semester.id}
+                    value={semester.id}
+                    className="rounded-lg flex items-center gap-2"
+                  >
                     <Book className="h-5 w-5" />
                     <span>{semester.name}</span>
                   </TabsTrigger>
@@ -165,7 +188,12 @@ export default function CoursesPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-2 right-2 left-2">
-                      <h3 className="font-bold text-sm md:text-base text-white line-clamp-2" dir='rtl'>{course.title}</h3>
+                      <h3
+                        className="font-bold text-sm md:text-base text-white line-clamp-2"
+                        dir="rtl"
+                      >
+                        {course.title}
+                      </h3>
                     </div>
                   </div>
                 </motion.div>
@@ -176,7 +204,10 @@ export default function CoursesPage() {
       </div>
 
       {/* Course Details Dialog */}
-      <Dialog open={!!selectedCourse} onOpenChange={(open) => !open && setSelectedCourse(null)}>
+      <Dialog
+        open={!!selectedCourse}
+        onOpenChange={(open) => !open && setSelectedCourse(null)}
+      >
         <DialogContent className="max-w-2xl rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md p-0 overflow-hidden">
           {selectedCourse && (
             <>
@@ -189,7 +220,9 @@ export default function CoursesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute bottom-4 right-4 left-4">
-                  <h2 className="text-2xl font-bold text-white " dir="rtl">{selectedCourse.title}</h2>
+                  <h2 className="text-2xl font-bold text-white " dir="rtl">
+                    {selectedCourse.title}
+                  </h2>
                 </div>
                 <DialogClose className="absolute top-4 left-4 bg-black/20 hover:bg-black/40 rounded-full p-2 text-white">
                   <svg
@@ -213,9 +246,13 @@ export default function CoursesPage() {
                 <ScrollArea className="h-[40vh] mt-4">
                   <div className="prose dark:prose-invert max-w-none">
                     <h3 className="text-lg font-medium mb-2">وصف المقرر</h3>
-                    <p className="text-muted-foreground whitespace-pre-line">{selectedCourse.description}</p>
+                    <p className="text-muted-foreground whitespace-pre-line">
+                      {selectedCourse.description}
+                    </p>
 
-                    <h3 className="text-lg font-medium mt-6 mb-2">أهداف المقرر</h3>
+                    <h3 className="text-lg font-medium mt-6 mb-2">
+                      أهداف المقرر
+                    </h3>
                     <ul className="space-y-2">
                       <li>فهم المفاهيم الأساسية في المجال</li>
                       <li>تطوير المهارات العملية والتطبيقية</li>
@@ -223,7 +260,9 @@ export default function CoursesPage() {
                       <li>تنمية مهارات التفكير النقدي والإبداعي</li>
                     </ul>
 
-                    <h3 className="text-lg font-medium mt-6 mb-2">محتوى المقرر</h3>
+                    <h3 className="text-lg font-medium mt-6 mb-2">
+                      محتوى المقرر
+                    </h3>
                     <ul className="space-y-2">
                       <li>المفاهيم الأساسية والنظريات</li>
                       <li>التطبيقات العملية والتدريبات</li>
@@ -244,5 +283,5 @@ export default function CoursesPage() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

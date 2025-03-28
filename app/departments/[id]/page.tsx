@@ -1,14 +1,24 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useParams } from "next/navigation"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { School, BookOpen, Brain, Laptop, Baby, GraduationCap, Mail, Phone, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  School,
+  BookOpen,
+  Brain,
+  Laptop,
+  Baby,
+  GraduationCap,
+  Mail,
+  Phone,
+  ExternalLink,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Dialog,
   DialogContent,
@@ -16,10 +26,10 @@ import {
   DialogTitle,
   DialogDescription,
   DialogClose,
-} from "@/components/ui/dialog"
-import professorsData from "@/lib/professors-data.json"
-import Link from "next/link"
-
+} from "@/components/ui/dialog";
+import professorsData from "@/lib/professors-data.json";
+import Link from "next/link";
+import SectionTitle from "@/components/section-title";
 // Map department IDs to icons
 const departmentIcons: Record<string, any> = {
   osool: School,
@@ -27,32 +37,32 @@ const departmentIcons: Record<string, any> = {
   psychology: Brain,
   technology: Laptop,
   kindergarten: Baby,
-}
+};
 
 export default function DepartmentPage() {
-  const params = useParams()
-  const departmentId = params.id as string
-console.log(departmentId)
-  const [department, setDepartment] = useState<any>(null)
-  const [professors, setProfessors] = useState<any[]>([])
-  const [selectedProfessor, setSelectedProfessor] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+  const params = useParams();
+  const departmentId = params.id as string;
+  console.log(departmentId);
+  const [department, setDepartment] = useState<any>(null);
+  const [professors, setProfessors] = useState<any[]>([]);
+  const [selectedProfessor, setSelectedProfessor] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Find the department
-    const dept = professorsData.departments.find((d) => d.id === departmentId)
+    const dept = professorsData.departments.find((d) => d.id === departmentId);
     if (dept) {
-      setDepartment(dept)
+      setDepartment(dept);
 
       // Get professors for this department
-      const deptProfessors = professorsData.professors.filter((p) => dept.professors.includes(p.id))
-      console.log(professorsData)
-      console.log(deptProfessors)
-      console.log(dept.professors)
-      setProfessors(deptProfessors)
+      const deptProfessors = professorsData.professors.filter((p) =>
+        dept.professors.includes(p.id),
+      );
+
+      setProfessors(deptProfessors);
     }
-    setLoading(false)
-  }, [departmentId])
+    setLoading(false);
+  }, [departmentId]);
 
   if (loading) {
     return (
@@ -61,7 +71,7 @@ console.log(departmentId)
           <p className="text-lg">جاري تحميل البيانات...</p>
         </div>
       </div>
-    )
+    );
   }
 
   if (!department) {
@@ -71,28 +81,23 @@ console.log(departmentId)
           <p className="text-lg">لم يتم العثور على القسم</p>
         </div>
       </div>
-    )
+    );
   }
 
-  const Icon = departmentIcons[department.id] || School
+  const Icon = departmentIcons[department.id] || School;
 
   return (
     <div className="pt-24 pb-16">
       <div className="container px-4 mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 "
-        >
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 py-3 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 dark:from-primary dark:to-blue-400">
-            {department.name}
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{department.description}</p>
-        </motion.div>
+        <SectionTitle
+          title={department.name}
+          description={department.description}
+        />
 
         <div className="max-w-5xl mx-auto">
-          <div className={`grid grid-cols-1 ${departmentId === "technology" ? "md:grid-cols-4" : "md:grid-cols-3"} gap-8 mb-12`}>
+          <div
+            className={`grid grid-cols-1 ${departmentId === "technology" ? "md:grid-cols-4" : "md:grid-cols-3"} gap-8 mb-12`}
+          >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -122,22 +127,26 @@ console.log(departmentId)
                 <p className="text-popover">{department.mission}</p>
               </div>
             </motion.div>
-            {departmentId==="technology" &&<Link href="/courses">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className={`${department.color.bg} rounded-2xl p-6 shadow-md min-h-[300px]`}
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-full mb-4 shadow-sm">
-                  <Icon className="h-12 w-12 text-primary" />
-                </div>
-                <h2 className="text-xl font-bold mb-2"> مقررات القسم</h2>
-                <p className="text-popover">جميع مقررات قسم تكنولوجيا التعليم </p>
-              </div>
-            </motion.div></Link>}
-
+            {departmentId === "technology" && (
+              <Link href="/courses">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className={`${department.color.bg} rounded-2xl p-6 shadow-md min-h-[300px]`}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-white/80 dark:bg-gray-800/80 p-3 rounded-full mb-4 shadow-sm">
+                      <Icon className="h-12 w-12 text-primary" />
+                    </div>
+                    <h2 className="text-xl font-bold mb-2"> مقررات القسم</h2>
+                    <p className="text-popover">
+                      جميع مقررات قسم تكنولوجيا التعليم{" "}
+                    </p>
+                  </div>
+                </motion.div>
+              </Link>
+            )}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -156,14 +165,20 @@ console.log(departmentId)
                   />
                 </div>
                 <h2 className="text-xl font-bold mb-2">رئيس القسم</h2>
-                <p className="text-primary font-medium">{department.head.name}</p>
-                <p className="text-sm text-muted-foreground">{department.head.title}</p>
+                <p className="text-primary font-medium">
+                  {department.head.name}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {department.head.title}
+                </p>
               </div>
             </motion.div>
           </div>
 
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6 text-center">أعضاء هيئة التدريس</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              أعضاء هيئة التدريس
+            </h2>
 
             {professors.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -185,9 +200,15 @@ console.log(departmentId)
                           />
                         </div>
                         <div className="p-4">
-                          <h3 className="text-base font-bold mb-1 line-clamp-1">{professor.name}</h3>
-                          <p className="text-primary text-xs mb-1">{professor.title}</p>
-                          <p className="text-muted-foreground text-xs mb-3">{professor.department}</p>
+                          <h3 className="text-base font-bold mb-1 line-clamp-1">
+                            {professor.name}
+                          </h3>
+                          <p className="text-primary text-xs mb-1">
+                            {professor.title}
+                          </p>
+                          <p className="text-muted-foreground text-xs mb-3">
+                            {professor.department}
+                          </p>
 
                           <Button
                             onClick={() => setSelectedProfessor(professor)}
@@ -205,8 +226,12 @@ console.log(departmentId)
             ) : (
               <div className="text-center py-12 glass-card rounded-2xl">
                 <GraduationCap className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                <h3 className="text-xl font-bold mb-2">لا يوجد أعضاء هيئة تدريس</h3>
-                <p className="text-muted-foreground">لم يتم العثور على أعضاء هيئة تدريس في هذا القسم</p>
+                <h3 className="text-xl font-bold mb-2">
+                  لا يوجد أعضاء هيئة تدريس
+                </h3>
+                <p className="text-muted-foreground">
+                  لم يتم العثور على أعضاء هيئة تدريس في هذا القسم
+                </p>
               </div>
             )}
           </div>
@@ -214,10 +239,15 @@ console.log(departmentId)
       </div>
 
       {/* Professor Details Dialog */}
-      <Dialog open={!!selectedProfessor} onOpenChange={(open) => !open && setSelectedProfessor(null)}>
+      <Dialog
+        open={!!selectedProfessor}
+        onOpenChange={(open) => !open && setSelectedProfessor(null)}
+      >
         <DialogContent className="max-w-3xl rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl">{selectedProfessor?.name}</DialogTitle>
+            <DialogTitle className="text-2xl">
+              {selectedProfessor?.name}
+            </DialogTitle>
             <DialogDescription className="text-base">
               {selectedProfessor?.title} - {selectedProfessor?.department}
             </DialogDescription>
@@ -229,7 +259,10 @@ console.log(departmentId)
                 <div className="md:w-1/3">
                   <div className="rounded-xl overflow-hidden shadow-md">
                     <Image
-                      src={selectedProfessor?.image || "/placeholder.svg?height=200&width=200"}
+                      src={
+                        selectedProfessor?.image ||
+                        "/placeholder.svg?height=200&width=200"
+                      }
                       alt={selectedProfessor?.name || "عضو هيئة تدريس"}
                       width={300}
                       height={300}
@@ -240,11 +273,15 @@ console.log(departmentId)
                   <div className="mt-4 space-y-3 glass-card p-4 rounded-xl">
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-primary" />
-                      <span className="text-xs">{selectedProfessor?.email}</span>
+                      <span className="text-xs">
+                        {selectedProfessor?.email}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="h-4 w-4 text-primary" />
-                      <span className="text-sm">{selectedProfessor?.phone}</span>
+                      <span className="text-sm">
+                        {selectedProfessor?.phone}
+                      </span>
                     </div>
                     {selectedProfessor?.profile && (
                       <div className="flex items-center gap-2">
@@ -271,32 +308,44 @@ console.log(departmentId)
                       >
                         السيرة الذاتية
                       </TabsTrigger>
-
                     </TabsList>
 
-                    <TabsContent value="bio" className="mt-4 glass-card p-4 rounded-xl">
+                    <TabsContent
+                      value="bio"
+                      className="mt-4 glass-card p-4 rounded-xl"
+                    >
                       <p>{selectedProfessor?.bio}</p>
                     </TabsContent>
 
-                    <TabsContent value="publications" className="mt-4 glass-card p-4 rounded-xl">
+                    <TabsContent
+                      value="publications"
+                      className="mt-4 glass-card p-4 rounded-xl"
+                    >
                       <ul className="space-y-2">
-                        {selectedProfessor?.publications.map((pub: string, index: number) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
-                            <span>{pub}</span>
-                          </li>
-                        ))}
+                        {selectedProfessor?.publications.map(
+                          (pub: string, index: number) => (
+                            <li key={index} className="flex items-start gap-2">
+                              <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
+                              <span>{pub}</span>
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </TabsContent>
 
-                    <TabsContent value="courses" className="mt-4 glass-card p-4 rounded-xl">
+                    <TabsContent
+                      value="courses"
+                      className="mt-4 glass-card p-4 rounded-xl"
+                    >
                       <ul className="space-y-2">
-                        {selectedProfessor?.courses.map((course: string, index: number) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
-                            <span>{course}</span>
-                          </li>
-                        ))}
+                        {selectedProfessor?.courses.map(
+                          (course: string, index: number) => (
+                            <li key={index} className="flex items-start gap-2">
+                              <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>
+                              <span>{course}</span>
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </TabsContent>
                   </Tabs>
@@ -313,5 +362,5 @@ console.log(departmentId)
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }

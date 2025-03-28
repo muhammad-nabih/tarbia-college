@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import Script from "next/script"
+import { useEffect, useRef, useState } from "react";
+import Script from "next/script";
 
 interface PanoramaViewerProps {
-  imageUrl: string
+  imageUrl: string;
 }
 
 export default function PanoramaViewer({ imageUrl }: PanoramaViewerProps) {
-  const viewerRef = useRef<HTMLDivElement>(null)
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false)
-  const [viewerInitialized, setViewerInitialized] = useState(false)
+  const viewerRef = useRef<HTMLDivElement>(null);
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+  const [viewerInitialized, setViewerInitialized] = useState(false);
 
   // Initialize the viewer after the script is loaded and the component is mounted
   useEffect(() => {
     if (isScriptLoaded && viewerRef.current && imageUrl && !viewerInitialized) {
       // Access the global pannellum object
-      const pannellum = (window as any).pannellum
+      const pannellum = (window as any).pannellum;
 
       if (pannellum && pannellum.viewer) {
         const viewer = pannellum.viewer(viewerRef.current, {
@@ -31,19 +31,19 @@ export default function PanoramaViewer({ imageUrl }: PanoramaViewerProps) {
           hfov: 100,
           minHfov: 50,
           maxHfov: 120,
-        })
+        });
 
-        setViewerInitialized(true)
+        setViewerInitialized(true);
 
         // Clean up on unmount
         return () => {
           if (viewer && typeof viewer.destroy === "function") {
-            viewer.destroy()
+            viewer.destroy();
           }
-        }
+        };
       }
     }
-  }, [imageUrl, isScriptLoaded, viewerInitialized])
+  }, [imageUrl, isScriptLoaded, viewerInitialized]);
 
   return (
     <>
@@ -52,9 +52,16 @@ export default function PanoramaViewer({ imageUrl }: PanoramaViewerProps) {
         src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"
         onLoad={() => setIsScriptLoaded(true)}
       />
-      <Script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" strategy="beforeInteractive" />
+      <Script
+        src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"
+        strategy="beforeInteractive"
+      />
 
-      <div ref={viewerRef} className="w-full h-full rounded-lg overflow-hidden" style={{ background: "#f1f1f1" }}>
+      <div
+        ref={viewerRef}
+        className="w-full h-full rounded-lg overflow-hidden"
+        style={{ background: "#f1f1f1" }}
+      >
         {!isScriptLoaded && (
           <div className="flex items-center justify-center h-full">
             <p>جاري تحميل العارض...</p>
@@ -62,6 +69,5 @@ export default function PanoramaViewer({ imageUrl }: PanoramaViewerProps) {
         )}
       </div>
     </>
-  )
+  );
 }
-
