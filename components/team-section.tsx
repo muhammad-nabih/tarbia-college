@@ -28,59 +28,60 @@ const professors = [
 const students = [
   {
     id: 1,
-    name: "زينب أحمد طلبة",
+    name: "زينب أشرف طلبة",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/زينب-أشرف.jpg",
   },
   {
     id: 2,
     name: "شهد رضا الجعيدي",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/شهد-رضا.jpg",
   },
   {
     id: 3,
-    name: "جيهان حاكم شريف",
+    name:`چيهانً
+ حاكم شريف`,
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/جيهان-حاكم.jpg",
   },
   {
     id: 4,
     name: "ايمان سرور البنا",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/ايمان.jpg",
   },
   {
     id: 5,
     name: "مروه أحمد المنشاوي",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/مروه-المنشاوي.jpg",
   },
   {
     id: 6,
     name: "سارة مصطفى النجار",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/ساره-النجار.png",
   },
   {
     id: 7,
     name: "سالي مصطفي عبدالغني",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/سالي-مصطفي.jpg",
   },
   {
     id: 8,
     name: "شروق حسن طه",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/placeholder.svg?height=400&width=400",
+    imagePath: "/us/شروق.png", // Update to the correct file extension or path
   },
 ];
 
@@ -164,11 +165,16 @@ export default function TeamSection() {
   // تحديد ألوان البطاقات بناءً على الفهرس
   const getCardColor = (index: number) => {
     const colors = [
-      "bg-gradient-to-br from-blue-600 to-blue-800",
+      "bg-gradient-to-br from-blue-500 to-blue-800",
       "bg-gradient-to-br from-purple-600 to-purple-800",
       "bg-gradient-to-br from-emerald-600 to-emerald-800",
       "bg-gradient-to-br from-amber-600 to-amber-800",
-      "bg-gradient-to-br from-rose-600 to-rose-800",
+      "bg-gradient-to-br from-rose-500 to-rose-800",
+
+        "bg-gradient-to-br from-cyan-500 to-cyan-800",
+        "bg-gradient-to-br from-pink-500 to-pink-800",
+
+        "bg-gradient-to-br from-indigo-500 to-indigo-800",
     ];
     return colors[index % colors.length];
   };
