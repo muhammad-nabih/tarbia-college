@@ -24,7 +24,7 @@ const videos = [
     title: "المبنى الرئيسي",
     description:
       "المبنى الرئيسي للكلية يضم الإدارة والقاعات الرئيسية والمرافق العامة المجهزة بأحدث التقنيات",
-    thumbnail: "/placeholder.svg?height=720&width=1280", // استبدل بمسار الصورة المصغرة الفعلية
+    thumbnail: "/builds/main.jpg", // استبدل بمسار الصورة المصغرة الفعلية
   },
   {
     id: "halls",
@@ -32,7 +32,7 @@ const videos = [
     title: "مبنى القاعات",
     description:
       "قاعات دراسية متطورة مجهزة بأحدث وسائل التعليم التفاعلي والتقنيات الحديثة",
-    thumbnail: "/placeholder.svg?height=720&width=1280", // استبدل بمسار الصورة المصغرة الفعلية
+      thumbnail: "/builds/qa3at.jpg", // استبدل بمسار الصورة المصغرة الفعلية
   },
   {
     id: "auditoriums",
@@ -40,7 +40,7 @@ const videos = [
     title: "مبنى المدرجات",
     description:
       "مدرجات واسعة مصممة بشكل عصري لاستيعاب أعداد كبيرة من الطلاب وتوفير بيئة تعليمية مثالية",
-    thumbnail: "/placeholder.svg?height=720&width=1280", // استبدل بمسار الصورة المصغرة الفعلية
+      thumbnail: "/builds/modargat.jpg",
   },
   {
     id: "workshops",
@@ -48,7 +48,7 @@ const videos = [
     title: "مبنى الورش",
     description:
       "ورش عملية متخصصة مجهزة بأحدث المعدات والأدوات لتطبيق المهارات العملية وتنمية الخبرات",
-    thumbnail: "/placeholder.svg?height=720&width=1280", // استبدل بمسار الصورة المصغرة الفعلية
+      thumbnail: "/builds/werash.jpg",
   },
 ];
 

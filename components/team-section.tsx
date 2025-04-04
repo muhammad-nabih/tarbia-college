@@ -5,23 +5,29 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { UserCircle2, GraduationCap, BookOpen } from "lucide-react";
+import { UserCircle2, GraduationCap, BookOpen, Facebook } from "lucide-react";
 
 // تصحيح بيانات الفريق
 const professors = [
   {
     id: 1,
-    name: "دكتور مي",
+    name: "م. مي حافظ ",
     title: "معيد",
-    specialty: "تكنولوجيا المعلومات",
+    specialty: "معيد تكنولوجيا التعليم",
     imagePath: "/مي.jpg",
+    email: "mayhafez@du.edu.eg",
+    facebook: "https://www.facebook.com/share/18U65Gtatq/",
+    linkedIn: "https://www.linkedin.com/in/may-hafez-4b0a1b1a3/",
   },
   {
     id: 2,
-    name: "أستاذ دكتور يسري",
+    name: "أ.د يسري عطيه ",
     title: "استاذ دكتور",
-    specialty: "تكنولوجيا المعلومات",
+    specialty: "أستاذ تكنولوجيا التعليم",
     imagePath: "/يسري.jpg",
+    email: "dr.yousri@du.edu.eg",
+    facebook: "https://www.facebook.com/share/1CBZayXUDv/",
+    linkedIn: "https://www.linkedin.com/in/may-hafez-4b0a1b1a3/",
   },
 ];
 
@@ -42,7 +48,7 @@ const students = [
   },
   {
     id: 3,
-    name:`چيهانً
+    name: `چيهانً
  حاكم شريف`,
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
@@ -81,11 +87,10 @@ const students = [
     name: "شروق حسن طه",
     specialty: "تكنولوجيا المعلومات",
     year: "السنة الرابعة",
-    imagePath: "/us/شروق.png", // Update to the correct file extension or path
+    imagePath: "/us/شروق.png",
   },
 ];
 
-// تأثيرات الحركة
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -150,7 +155,7 @@ const cardVariant = {
 export default function TeamSection() {
   const [activeTab, setActiveTab] = useState("professors");
   const [imageLoadError, setImageLoadError] = useState<Record<string, boolean>>(
-    {},
+    {}
   );
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
@@ -170,11 +175,9 @@ export default function TeamSection() {
       "bg-gradient-to-br from-emerald-600 to-emerald-800",
       "bg-gradient-to-br from-amber-600 to-amber-800",
       "bg-gradient-to-br from-rose-500 to-rose-800",
-
-        "bg-gradient-to-br from-cyan-500 to-cyan-800",
-        "bg-gradient-to-br from-pink-500 to-pink-800",
-
-        "bg-gradient-to-br from-indigo-500 to-indigo-800",
+      "bg-gradient-to-br from-cyan-500 to-cyan-800",
+      "bg-gradient-to-br from-pink-500 to-pink-800",
+      "bg-gradient-to-br from-indigo-500 to-indigo-800",
     ];
     return colors[index % colors.length];
   };
@@ -323,77 +326,81 @@ export default function TeamSection() {
                             </p>
 
                             <div className="mt-6 flex gap-3">
-                              <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
+                              {professor.linkedIn && (
+                                <motion.a
+                                  href={professor.linkedIn}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                                 >
-                                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                  <rect
-                                    width="4"
-                                    height="12"
-                                    x="2"
-                                    y="9"
-                                  ></rect>
-                                  <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                              </motion.button>
-                              <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                >
-                                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                                </svg>
-                              </motion.button>
-                              <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="20"
-                                  height="20"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                >
-                                  <rect
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
                                     width="20"
-                                    height="16"
-                                    x="2"
-                                    y="4"
-                                    rx="2"
-                                  ></rect>
-                                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                                </svg>
-                              </motion.button>
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect
+                                      width="4"
+                                      height="12"
+                                      x="2"
+                                      y="9"
+                                    ></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                  </svg>
+                                </motion.a>
+                              )}
+
+                              {professor.facebook && (
+                                <motion.a
+                                  href={professor.facebook}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                                >
+                                  <Facebook className="w-5 h-5" />
+
+                                </motion.a>
+                              )}
+
+                              {professor.email && (
+                                <motion.a
+                                  href={`mailto:${professor.email}`}
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <rect
+                                      width="20"
+                                      height="16"
+                                      x="2"
+                                      y="4"
+                                      rx="2"
+                                    ></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                  </svg>
+                                </motion.a>
+                              )}
                             </div>
                           </motion.div>
                         </div>
